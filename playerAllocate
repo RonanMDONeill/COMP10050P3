@@ -1,0 +1,118 @@
+#include <stdlib.h>
+#include "crossfireOperations.h"
+#include <unistd.h>
+#include "slots.h"
+#include <time.h>
+#include "abilities.h"
+
+
+
+const char *ClassEnum(class);
+const char *TypeEnum(slotType);
+
+void makePlayer(void){
+	setvbuf(stdout, NULL, _IONBF, 0);
+
+    char slotArr[20][100];
+
+
+    srand(time(NULL));
+	int i,playerCount, slotCount, choice;//merged both our variables//
+
+    printf("How many players are there? max = 6\n");
+    fflush(stdout);//fixes the eclipse bug//
+    scanf("%d", &playerCount);
+    puts("");
+    printf("How many Slots do you want\n");
+    fflush(stdout);
+    scanf("%d", &slotCount);
+
+        for(i=0;i<playerCount;i++){//I refer using i in for loops but feel free to change it when you modify the code //
+
+
+        	printf("Enter the characters name\n");
+        	fflush(stdout);
+        	scanf("%s", &player[i].name);//assigning the string to a character array in the struct//
+        	printf("Choose its class\n0:Ogre\n1:Wizard\n2:Elf\n3:Human\n");
+        	fflush(stdout);
+        	scanf("%d", &choice);
+        	//assigning a player class to the struct//
+            player[i].life = 100;
+
+        	switch(choice){
+
+        		case(0):{
+        			player[i].class = 0;
+        			break;
+        		}
+        		case(1):{
+        			player[i].class = 1;
+        			break;
+        		}
+        		case(2):{
+        			player[i].class = 2;
+        			break;
+        		}
+        		case(3):{
+        			player[i].class = 3;
+        			break;
+        		}
+        	}
+
+
+        	puts("");//prints a space//
+        }
+        slotFill(slotCount,slotArr);
+        slotAssign(playerCount, slotCount, player, slotArr);
+        abilities( playerCount, player);
+
+
+
+
+        //printing out the name and abilities//
+
+
+        for(i=0;i<playerCount;i++){
+            printf("%s (%s, %.2f)\n", player[i].name,ClassEnum(player[i].class),player[i].life);
+
+//            printf("smartness: %d\n",player[i].smartness);
+//            printf("strength: %d\n",player[i].strength);
+//            printf("magic_Skills: %d\n",player[i].magic_Skills);
+//            printf("Luck: %d\n",player[i].Luck);
+//            printf("Dexterity: %d\n",player[i].Dexterity);
+
+
+
+
+
+
+
+        }
+
+
+}
+
+
+const char *ClassEnum(class){
+		switch(class){
+		case Ogre: return "Ogre";
+		case Wizard: return "Wizard";
+		case Elf: return "Elf";
+		case Human: return "Human";
+		}
+	}
+
+
+const char *TypeEnum(slotType){
+		switch(slotType){
+		case ground: return "Ground";
+		case hill: return "Hill";
+		case city: return "City";
+
+		}
+	}
+
+
+
+
+
