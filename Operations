@@ -1,0 +1,66 @@
+#ifdef CROSSFIREOPERTIONS_H_
+#define CROSSFIREOPERATIONS_H_
+
+
+#endif
+
+
+
+#define BOARD_SIZE 7
+#define REQ_Distance 3
+
+typedef int bool;
+enum{false,true};
+
+struct slot{
+	int row;
+	int column;
+	struct slot *left;
+	struct slot *right;
+	struct slot *up;
+	struct slot *down;
+}slot;
+
+int getBoardSize();
+
+void getDesiredElement(int maxsize,int*row,int*col);
+
+
+void createBoard(int boardSize,struct slot **upLeft,struct slot **upRight,struct slot **downLeft,struct slot **downRight);
+
+
+void reachDesiredElement(int row, int column, struct slot * initialSlot);
+
+enum Classes{
+
+ Ogre , Wizard , Elf , Human
+
+};
+
+
+
+enum slotType{
+	ground, hill, city
+};
+
+
+
+    struct players_{
+    	char name[20];
+        enum Classes class;
+    	int smartness;
+    	int strength;
+    	int magic_Skills;
+    	int Luck;
+    	int Dexterity;
+    	double life;
+    	enum slotType slotType;
+    	int slotNum;
+    	int row;
+    	int column;
+
+
+}player[7];
+
+
+
