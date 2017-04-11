@@ -1,6 +1,8 @@
 
 
-* boardCreation.c
+
+
+reation.c
  *
  *  Created on: 7 Apr 2017
  *      Author: kiowa
@@ -9,11 +11,12 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "crossfireOperations.h"
 
 void createBoard(int boardSize,struct slot **upLeft,struct slot **upRight,struct slot **downLeft,struct slot **downRight){
 	setvbuf(stdout,NULL,_IONBF,0);
-	int j;
+
 	struct slot **board = malloc(boardSize*sizeof(struct slot));
 
 	for(int i=0;i<boardSize;i++){
@@ -22,6 +25,7 @@ void createBoard(int boardSize,struct slot **upLeft,struct slot **upRight,struct
 		for(int j=0;j<boardSize;j++){
 			board[i][j].row = i;
 			board[i][j].column = j;
+			board[i][j].slotType = slotAssign();
 		}
 
 	}
@@ -88,16 +92,7 @@ void createBoard(int boardSize,struct slot **upLeft,struct slot **upRight,struct
 
 		*downRight = &board[boardSize -1][boardSize -1];
 
-		for(int i = 0; i < boardSize + 1; i++){
 
-			int r = rand() % 3; // random number between 0 and 2
-			switch(r){
-				case 0: board[i][j].slotType = ground; break;
-				case 1: board[i][j].slotType = hill; break;
-				case 2: board[i][j].slotType = city; break;
-
-			}
-		}
 }
 
 
@@ -153,9 +148,6 @@ void reachDesiredElement(int row, int column, struct slot * initialSlot){
 
 		}
 	}
-
-
-
 
 
 
