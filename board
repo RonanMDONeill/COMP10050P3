@@ -1,8 +1,8 @@
 
 
 
-
-reation.c
+/*
+ * boardCreation.c
  *
  *  Created on: 7 Apr 2017
  *      Author: kiowa
@@ -25,7 +25,7 @@ void createBoard(int boardSize,struct slot **upLeft,struct slot **upRight,struct
 		for(int j=0;j<boardSize;j++){
 			board[i][j].row = i;
 			board[i][j].column = j;
-			board[i][j].slotType = slotAssign();
+			board[i][j].slotType = slotAssign(boardSize);
 		}
 
 	}
@@ -92,6 +92,14 @@ void createBoard(int boardSize,struct slot **upLeft,struct slot **upRight,struct
 
 		*downRight = &board[boardSize -1][boardSize -1];
 
+		printf("The board is as follows Board:\n");
+		for(int i=0;i<boardSize;i++){
+			for(int j=0;j<boardSize;j++){
+
+					printf("([%d][%d] %d)\t",board[i]->row,board[j]->column,board[i][j].slotType);
+			}
+		}
+
 
 }
 
@@ -150,6 +158,25 @@ void reachDesiredElement(int row, int column, struct slot * initialSlot){
 	}
 
 
+
+
+int slotAssign(int boardSize){
+
+
+
+	int r;
+
+	srand(time(NULL)); // start random number generator with time from CPU as source
+
+
+		r = rand() % 3; // random number between 0 and 2
+		switch(r){
+			case 0: return ground; break;
+			case 1: return hill; break;
+			case 2: return city; break;
+
+		}
+	}
 
 
 
