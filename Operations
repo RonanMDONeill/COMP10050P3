@@ -1,8 +1,15 @@
-#ifdef CROSSFIREOPERTIONS_H_
+/*
+ * crossfireOperations.h
+ *
+ *  Created on: 7 Apr 2017
+ *      Author: kiowa
+ */
+
+#ifndef CROSSFIREOPERATIONS_H_
 #define CROSSFIREOPERATIONS_H_
 
 
-#endif
+
 
 
 
@@ -12,6 +19,10 @@
 typedef int bool;
 enum{false,true};
 
+enum slotType{
+	ground, hill, city
+};
+
 struct slot{
 	int row;
 	int column;
@@ -19,6 +30,7 @@ struct slot{
 	struct slot *right;
 	struct slot *up;
 	struct slot *down;
+	enum slotType slotType;
 }slot;
 
 int getBoardSize();
@@ -39,9 +51,6 @@ enum Classes{
 
 
 
-enum slotType{
-	ground, hill, city
-};
 
 
 
@@ -54,13 +63,12 @@ enum slotType{
     	int Luck;
     	int Dexterity;
     	double life;
-    	enum slotType slotType;
-    	int slotNum;
-    	int row;
-    	int column;
+    	int rowp;
+    	int columnP;
+    }player[7];
 
 
-}player[7];
-
+int slotAssign(int boardSize);
+#endif
 
 
