@@ -3,6 +3,11 @@
  *
  *  Created on: 7 Apr 2017
  *      Author: kiowa
+ *//*
+ * userInteraction.c
+ *
+ *  Created on: 7 Apr 2017
+ *      Author: kiowa
  */
 
 #include <stdio.h>
@@ -16,6 +21,7 @@ setvbuf(stdout,NULL,_IOLBF,0);
 	scanf("%d", &boardSize);
 	return boardSize;
 }
+
 
 void getDesiredElement(int boardSize, int * row, int * col){
 	setvbuf(stdout,NULL,_IOLBF,0);
@@ -40,3 +46,4 @@ void getDesiredElement(int boardSize, int * row, int * col){
 				printf("Error: Incorrect column dimension\n");
 		} while(*col < 0 && *col >= boardSize);
 }
+
