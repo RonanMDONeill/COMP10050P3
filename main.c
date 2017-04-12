@@ -11,7 +11,8 @@
 int main(){
 	setvbuf(stdout,NULL,_IONBF,0);
 	int row,column,boardSize;
-	makePlayers();
+
+	makePlayer();
 
 	struct slot *upLeft;
 	struct slot *upRight;
@@ -50,3 +51,4 @@ int main(){
 return 0;
 
 }
+
