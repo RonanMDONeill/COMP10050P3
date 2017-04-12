@@ -1,31 +1,38 @@
+/*
+ * playerAllocate.c
+ *
+ *  Created on: 7 Apr 2017
+ *      Author: kiowa
+ */
+
+#include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 #include "crossfireOperations.h"
 #include <unistd.h>
-#include "slots.h"
 #include <time.h>
 #include "abilities.h"
 
-
-
 const char *ClassEnum(class);
-const char *TypeEnum(slotType);
+
+
+
+
 
 void makePlayer(void){
 	setvbuf(stdout, NULL, _IONBF, 0);
 
-    char slotArr[20][100];
+
 
 
     srand(time(NULL));
-	int i,playerCount, slotCount, choice;//merged both our variables//
+	int i,playerCount,choice;//merged both our variables//
 
     printf("How many players are there? max = 6\n");
     fflush(stdout);//fixes the eclipse bug//
     scanf("%d", &playerCount);
     puts("");
-    printf("How many Slots do you want\n");
-    fflush(stdout);
-    scanf("%d", &slotCount);
+
 
         for(i=0;i<playerCount;i++){//I refer using i in for loops but feel free to change it when you modify the code //
 
@@ -38,23 +45,25 @@ void makePlayer(void){
         	scanf("%d", &choice);
         	//assigning a player class to the struct//
             player[i].life = 100;
+            player[i].rowp = rand()%7;
+            player[i].columnP = rand()%7;
 
         	switch(choice){
 
         		case(0):{
-        			player[i].class = 0;
+        			player[i].class = Ogre;
         			break;
         		}
         		case(1):{
-        			player[i].class = 1;
+        			player[i].class = Wizard;
         			break;
         		}
         		case(2):{
-        			player[i].class = 2;
+        			player[i].class = Elf;
         			break;
         		}
         		case(3):{
-        			player[i].class = 3;
+        			player[i].class = Human;
         			break;
         		}
         	}
@@ -62,8 +71,7 @@ void makePlayer(void){
 
         	puts("");//prints a space//
         }
-        slotFill(slotCount,slotArr);
-        slotAssign(playerCount, slotCount, player, slotArr);
+
         abilities( playerCount, player);
 
 
@@ -73,7 +81,7 @@ void makePlayer(void){
 
 
         for(i=0;i<playerCount;i++){
-            printf("%s (%s, %.2f)\n", player[i].name,ClassEnum(player[i].class),player[i].life);
+            printf("%s (%s, %.2f) is on slot [%d][%d]\n", player[i].name,ClassEnum(player[i].class),player[i].life,player[i].rowp,player[i].columnP);
 
 //            printf("smartness: %d\n",player[i].smartness);
 //            printf("strength: %d\n",player[i].strength);
@@ -92,7 +100,6 @@ void makePlayer(void){
 
 }
 
-
 const char *ClassEnum(class){
 		switch(class){
 		case Ogre: return "Ogre";
@@ -101,18 +108,6 @@ const char *ClassEnum(class){
 		case Human: return "Human";
 		}
 	}
-
-
-const char *TypeEnum(slotType){
-		switch(slotType){
-		case ground: return "Ground";
-		case hill: return "Hill";
-		case city: return "City";
-
-		}
-	}
-
-
 
 
 
