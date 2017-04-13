@@ -9,13 +9,6 @@
 #define CROSSFIREOPERATIONS_H_
 
 
-
-
-
-
-#define BOARD_SIZE 7
-#define REQ_Distance 3
-
 typedef int bool;
 enum{false,true};
 
@@ -33,28 +26,11 @@ struct slot{
 	enum slotType slotType;
 }slot;
 
-int getBoardSize();
-
-void getDesiredElement(int maxsize,int*row,int*col);
-
-
-void createBoard(int boardSize,struct slot **upLeft,struct slot **upRight,struct slot **downLeft,struct slot **downRight);
-
-
-void reachDesiredElement(int row, int column, struct slot * initialSlot);
-
 enum Classes{
-
- Ogre , Wizard , Elf , Human
-
+	Ogre , Wizard , Elf , Human
 };
 
-
-
-
-
-
-    struct players_{
+struct players_{
     	char name[20];
         enum Classes class;
     	int smartness;
@@ -65,10 +41,29 @@ enum Classes{
     	double life;
     	int rowp;
     	int columnP;
+		enum slotType slotType;
+		int userNum;
+		
     }player[7];
 
 
-int slotAssign(int boardSize);
-#endif
+int getBoardSize(); // userInteraction.c
+
+void getDesiredElement(int maxsize,int*row,int*col); // userInteraction.c
 
 
+void createBoard(int boardSize,struct slot **upLeft,struct slot **upRight,struct slot **downLeft,struct slot **downRight); // boardCreation.c
+
+
+struct slot *  reachDesiredElement(int row, int column, struct slot * initialSlot); // boardCreation.c
+
+void makePlayer(int *playerCountPtr); // playerAllocate.c
+
+void magicAttack(int idNum, int playerCount, struct players_ *player);
+
+void findSlots(int reqDist, int currDist,  struct slot * currSlot, struct slot * foundSlots, int * count,  bool explored[7][7]);
+
+
+
+
+int slotAssign(int boardSize); // boardCreation.c
