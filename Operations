@@ -2,7 +2,7 @@
  * crossfireOperations.h
  *
  *  Created on: 7 Apr 2017
- *      Author: kiowa
+ *      Author: kiowa + rónan
  */
 
 #ifndef CROSSFIREOPERATIONS_H_
@@ -41,8 +41,8 @@ struct players_{
     	double life;
     	int rowp;
     	int columnP;
-		enum slotType slotType;
-		int userNum;
+	enum slotType slotType;
+	int userNum;
 		
     }player[7];
 
@@ -59,11 +59,16 @@ struct slot *  reachDesiredElement(int row, int column, struct slot * initialSlo
 
 void makePlayer(int *playerCountPtr); // playerAllocate.c
 
+void nearAttack(int idNum, int playerCount, struct players_ *player, int BOARD_SIZE, struct slot *upLeft,struct slot *upRight,struct slot *downLeft,struct slot *downRight);
+
 void magicAttack(int idNum, int playerCount, struct players_ *player);
 
-void findSlots(int reqDist, int currDist,  struct slot * currSlot, struct slot * foundSlots, int * count,  bool explored[7][7]);
+void findSlots(int boardSize, int reqDist, int currDist,  struct slot * currSlot, struct slot * foundSlots, int * count,  bool explored[boardSize][boardSize]);
 
 
 
 
 int slotAssign(int boardSize); // boardCreation.c
+#endif
+
+
