@@ -63,6 +63,8 @@ void nearAttack(int idNum, int playerCount, struct players_ *player, int BOARD_S
 
 void magicAttack(int idNum, int playerCount, struct players_ *player);
 
+void movePlayer(int idNum, struct players_ player[], int BOARD_SIZE, struct slot *upLeft,struct slot *upRight,struct slot *downLeft,struct slot *downRight, struct slot board[BOARD_SIZE][BOARD_SIZE]);
+
 void findSlots(int boardSize, int reqDist, int currDist,  struct slot * currSlot, struct slot * foundSlots, int * count,  bool explored[boardSize][boardSize]);
 
 
