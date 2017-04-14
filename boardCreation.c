@@ -26,7 +26,7 @@ void createBoard(int boardSize,struct slot **upLeft,struct slot **upRight,struct
 		for(int j=0;j<boardSize;j++){
 			board[i][j].row = i;
 			board[i][j].column = j;
-			board[i][j].slotType = slotAssign(boardSize);
+			//board[i][j].slotType = slotAssign(boardSize);
 		}
 
 	}
