@@ -13,20 +13,16 @@
 #include <time.h>
 #include "abilities.h"
 
-const char *ClassEnum(class);
+const char *ClassEnum(int class);
 
-
-
-
-
-void makePlayer(void){
+void makePlayer(int *playerCountPtr){
 	setvbuf(stdout, NULL, _IONBF, 0);
 
+	int playerCount;
 
-
-
+	
     srand(time(NULL));
-	int i,playerCount,choice;//merged both our variables//
+	int i,choice;//merged both our variables//
 
     printf("How many players are there? max = 6\n");
     fflush(stdout);//fixes the eclipse bug//
@@ -45,8 +41,7 @@ void makePlayer(void){
         	scanf("%d", &choice);
         	//assigning a player class to the struct//
             player[i].life = 100;
-            player[i].rowp = rand()%7;
-            player[i].columnP = rand()%7;
+			player[i].userNum = i;
 
         	switch(choice){
 
@@ -80,7 +75,7 @@ void makePlayer(void){
         //printing out the name and abilities//
 
 
-        for(i=0;i<playerCount;i++){
+     /*   for(i=0;i<playerCount;i++){
             printf("%s (%s, %.2f) is on slot [%d][%d]\n", player[i].name,ClassEnum(player[i].class),player[i].life,player[i].rowp,player[i].columnP);
 
 //            printf("smartness: %d\n",player[i].smartness);
@@ -95,19 +90,21 @@ void makePlayer(void){
 
 
 
-        }
+        }*/
+		
+		*playerCountPtr = playerCount;
 
 
 }
 
-const char *ClassEnum(class){
+const char *ClassEnum(int class){
 		switch(class){
 		case Ogre: return "Ogre";
 		case Wizard: return "Wizard";
 		case Elf: return "Elf";
 		case Human: return "Human";
 		}
-	}
+}
 
 
 
