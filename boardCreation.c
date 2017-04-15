@@ -1,9 +1,11 @@
 
+
+
 /*
  * boardCreation.c
  *
  *  Created on: 7 Apr 2017
- *      Author: kiowa + liliana + rónan
+ *      Author: kiowa
  */
 
 
@@ -11,7 +13,6 @@
 #include <stdlib.h>
 #include <time.h>
 #include "crossfireOperations.h"
-
 
 void createBoard(int boardSize,struct slot **upLeft,struct slot **upRight,struct slot **downLeft,struct slot **downRight){
 	setvbuf(stdout,NULL,_IONBF,0);
@@ -131,14 +132,14 @@ void createBoard(int boardSize,struct slot **upLeft,struct slot **upRight,struct
 	*downRight = &board[boardSize -1][boardSize -1];
 
 
-		printf("The board is as follows Board:\n");
+		/*printf("The board is as follows Board:\n");
 		for(int i=0;i<boardSize;i++){
 			for(int j=0;j<boardSize;j++){
 
 					printf("([%d][%d] %d)\t",board[i][j].row,board[i][j].column,board[i][j].slotType);
 			}
 			printf("\n");
-		}
+		}*/
 
 
 }
@@ -200,7 +201,7 @@ struct slot * reachDesiredElement(int row, int column, struct slot * initialSlot
 		//if the current slot is at a column and a row equal to the desired column and row, respectively
 		// we found the slot
 		if(currentSlot->column == column && currentSlot->row == row){
-			printf("Found\n");
+			//printf("Found\n");
 			found = true;
 
 		}
@@ -265,3 +266,10 @@ void findSlots(int boardSize, int reqDist, int currDist,  struct slot * currSlot
 
 
 }
+
+
+
+
+
+
+
