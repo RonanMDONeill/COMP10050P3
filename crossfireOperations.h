@@ -41,8 +41,8 @@ struct players_{
     	double life;
     	int rowp;
     	int columnP;
-	enum slotType slotType;
-	int userNum;
+		enum slotType slotType;
+		int userNum;
 		
     }player[7];
 
@@ -59,11 +59,15 @@ struct slot *  reachDesiredElement(int row, int column, struct slot * initialSlo
 
 void makePlayer(int *playerCountPtr); // playerAllocate.c
 
-void nearAttack(int idNum, int playerCount, struct players_ *player, int BOARD_SIZE, struct slot *upLeft,struct slot *upRight,struct slot *downLeft,struct slot *downRight);
+void moveORattack(int idNum,int playerCount, struct players_ *player, int BOARD_SIZE, struct slot *upLeft,struct slot *upRight,struct slot *downLeft,struct slot *downRight, struct slot board[BOARD_SIZE][BOARD_SIZE]);
 
-void magicAttack(int idNum, int playerCount, struct players_ *player);
+void nearAttack(int idNum, int playerCount, struct players_ *player, int BOARD_SIZE, struct slot *upLeft,struct slot *upRight,struct slot *downLeft,struct slot *downRight, int *opt);
 
-void movePlayer(int idNum, struct players_ player[], int BOARD_SIZE, struct slot *upLeft,struct slot *upRight,struct slot *downLeft,struct slot *downRight, struct slot board[BOARD_SIZE][BOARD_SIZE]);
+void movePlayer(int idNum, struct players_ *player, int BOARD_SIZE, struct slot *upLeft,struct slot *upRight,struct slot *downLeft,struct slot *downRight, struct slot board[BOARD_SIZE][BOARD_SIZE], int *opt);
+
+void magicAttack(int idNum, int playerCount, struct players_ *player, int *opt);
+
+void distantAttack(int idNum, int playerCount, struct players_ *player, int BOARD_SIZE, struct slot *upLeft,struct slot *upRight,struct slot *downLeft,struct slot *downRight, int *opt);
 
 void findSlots(int boardSize, int reqDist, int currDist,  struct slot * currSlot, struct slot * foundSlots, int * count,  bool explored[boardSize][boardSize]);
 
