@@ -13,14 +13,14 @@
 #include <time.h>
 #include "abilities.h"
 
-const char *ClassEnum(int class);
+
 
 void makePlayer(int *playerCountPtr){
 	setvbuf(stdout, NULL, _IONBF, 0);
 
 	int playerCount;
 
-	
+
     srand(time(NULL));
 	int i,choice;//merged both our variables//
 
@@ -77,34 +77,18 @@ void makePlayer(int *playerCountPtr){
 
      /*   for(i=0;i<playerCount;i++){
             printf("%s (%s, %.2f) is on slot [%d][%d]\n", player[i].name,ClassEnum(player[i].class),player[i].life,player[i].rowp,player[i].columnP);
-
 //            printf("smartness: %d\n",player[i].smartness);
 //            printf("strength: %d\n",player[i].strength);
 //            printf("magic_Skills: %d\n",player[i].magic_Skills);
 //            printf("Luck: %d\n",player[i].Luck);
 //            printf("Dexterity: %d\n",player[i].Dexterity);
-
-
-
-
-
-
-
         }*/
-		
+
 		*playerCountPtr = playerCount;
 
 
 }
 
-const char *ClassEnum(int class){
-		switch(class){
-		case Ogre: return "Ogre";
-		case Wizard: return "Wizard";
-		case Elf: return "Elf";
-		case Human: return "Human";
-		}
-}
 
 
 
