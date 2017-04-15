@@ -16,31 +16,33 @@ void moveORattack(int idNum,int playerCount, struct players_ *player, int BOARD_
 	int x, choice;
 	int option = 0;
 	
-	while(option == 0){
-		printf("\n%s, would you like to:\n", player[idNum].name);
+	if(player[idNum].life > 0){
+		while(option == 0){
+			printf("\n%s, would you like to:\n", player[idNum].name);
 	
-		if(player[idNum].magic_Skills + player[idNum].smartness > 150){
-			printf("1. Move slot?\n2. Attempt a near attack?\n3. Attempt a distant attack?\n4. Attempt a magic attack?\n");
-			scanf("%d", &choice);
-				while(choice < 1 || choice > 4){
-				printf("Sorry that is not a valid option, please try again: ");
+			if(player[idNum].magic_Skills + player[idNum].smartness > 150){
+				printf("1. Move slot?\n2. Attempt a near attack?\n3. Attempt a distant attack?\n4. Attempt a magic attack?\n");
 				scanf("%d", &choice);
+					while(choice < 1 || choice > 4){
+					printf("Sorry that is not a valid option, please try again: ");
+					scanf("%d", &choice);
+				}
 			}
-		}
-		else{
-			printf("1. Move slot?\n2. Attempt a near attack?\n3. Attempt a distant attack?\n");
-			scanf("%d", &choice);
-			while(choice < 1 || choice > 3){
-				printf("Sorry that is not a valid option, please try again: ");
+			else{
+				printf("1. Move slot?\n2. Attempt a near attack?\n3. Attempt a distant attack?\n");
 				scanf("%d", &choice);
+				while(choice < 1 || choice > 3){
+					printf("Sorry that is not a valid option, please try again: ");
+					scanf("%d", &choice);
+				}
 			}
-		}
 	
-		switch(choice){
-			case 1: movePlayer(idNum, player, BOARD_SIZE, upLeft, upRight, downLeft, downRight, board, &option); break;
-			case 2: nearAttack(idNum, playerCount, player, BOARD_SIZE, upLeft, upRight, downLeft, downRight, &option); break;
-			case 3: distantAttack(idNum, playerCount, player, BOARD_SIZE, upLeft, upRight, downLeft, downRight, &option); break;
-			case 4: magicAttack(idNum, playerCount, player, &option); break;
+			switch(choice){
+				case 1: movePlayer(idNum, player, BOARD_SIZE, upLeft, upRight, downLeft, downRight, board, &option); break;
+				case 2: nearAttack(idNum, playerCount, player, BOARD_SIZE, upLeft, upRight, downLeft, downRight, &option); break;
+				case 3: distantAttack(idNum, playerCount, player, BOARD_SIZE, upLeft, upRight, downLeft, downRight, &option); break;
+				case 4: magicAttack(idNum, playerCount, player, &option); break;
+			}
 		}
 	}
 }
@@ -244,7 +246,7 @@ void distantAttack(int idNum, int playerCount, struct players_ *player, int BOAR
 		if(choice < count2){
 			if(player[number[choice]].Dexterity < player[idNum].Dexterity){ // attack output
 				player[number[choice]].life -=  (0.3) * player[idNum].strength;
-				printf("You deal%.0f damage!\n", (0.3) * player[idNum].strength);
+				printf("You deal %.0f damage!\n", (0.3) * player[idNum].strength);
 			}
 			else{
 				printf("You deal no damage!!\n");
@@ -383,7 +385,7 @@ void movePlayer(int idNum, struct players_ *player, int BOARD_SIZE, struct slot 
 		// assigning new slot and slot type
 		player[idNum].rowp = foundSlots[choice].row;
 		player[idNum].columnP = foundSlots[choice].column;
-		player[idNum].slotType == board[player[idNum].rowp][player[idNum].columnP].slotType;
+		player[idNum].slotType = board[player[idNum].rowp][player[idNum].columnP].slotType;
 		
 		// changing abilities based on new slot type
 		if(player[idNum].slotType == 0){
