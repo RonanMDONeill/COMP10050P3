@@ -1,6 +1,4 @@
 
-
-
 /*
  * boardCreation.c
  *
@@ -93,7 +91,7 @@ void createBoard(int boardSize,struct slot **upLeft,struct slot **upRight,struct
 		board[0][0].down = &board[1][0];
 		board[0][0].up = NULL;
 		board[0][0].left = NULL;
-		
+
 
 		//It sets up the adjacent slots for the slot at position (0,boardSize -1).
 		//This only has only 2 adjacent slots: left and down
@@ -135,7 +133,6 @@ void createBoard(int boardSize,struct slot **upLeft,struct slot **upRight,struct
 		/*printf("The board is as follows Board:\n");
 		for(int i=0;i<boardSize;i++){
 			for(int j=0;j<boardSize;j++){
-
 					printf("([%d][%d] %d)\t",board[i][j].row,board[i][j].column,board[i][j].slotType);
 			}
 			printf("\n");
@@ -266,10 +263,5 @@ void findSlots(int boardSize, int reqDist, int currDist,  struct slot * currSlot
 
 
 }
-
-
-
-
-
 
 
