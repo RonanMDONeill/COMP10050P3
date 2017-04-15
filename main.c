@@ -17,10 +17,11 @@ int main(){
 	
 	int row,column,boardSize;
 	int i, j;
-	int playerCount;
+	int playerCount, check = 0;
+
 
 	makePlayer(&playerCount);
-
+	
 	struct slot *upLeft;
 	struct slot *upRight;
 	struct slot *downLeft;
@@ -38,14 +39,6 @@ int main(){
 			gameBoard[i][j].slotType = slotAssign(boardSize);
 		}
 	}
-
-	printf("The board is as follows:\n");
-	for(int i=0;i<boardSize;i++){
-		for(int j=0;j<boardSize;j++){
-			printf("([%d][%d] %d)\t",gameBoard[i][j].row, gameBoard[i][j].column, gameBoard[i][j].slotType);
-		}
-		printf("\n");
-	}
 	
 	srand(time(NULL));
 	for(i=0;i<playerCount;i++){
@@ -55,22 +48,43 @@ int main(){
 	}
 	
 	
+	while(playerCount > 1){
+		
+		printf("\nThe board is as follows:\n");
+		for(int i=0;i<boardSize;i++){
+			for(int j=0;j<boardSize;j++){
+				printf("([%d][%d] %d)\t",gameBoard[i][j].row, gameBoard[i][j].column, gameBoard[i][j].slotType);
+			}
+			printf("\n");
+		}
 	
+		for(i=0;i<playerCount;i++){
+			printf("%s (%d, %.2f) is on slot [%d][%d] %d\n", player[i].name, player[i].class,player[i].life,player[i].rowp,player[i].columnP, player[i].slotType);
+		}
+
+		for(i = 0; i < playerCount; i++){
+			moveORattack(player[i].userNum, playerCount, player, boardSize, upLeft, upRight, downLeft, downRight, gameBoard);
+		}
 	
-	for(i=0;i<playerCount;i++){
-		printf("%s (%d, %.2f) is on slot [%d][%d] %d\n", player[i].name, player[i].class,player[i].life,player[i].rowp,player[i].columnP, player[i].slotType);
-	}
-
-	for(i = 0; i < playerCount; i++){
-		moveORattack(player[i].userNum, playerCount, player, boardSize, upLeft, upRight, downLeft, downRight, gameBoard);
+		for(i = 0; i < playerCount; i++){
+			printf("%s: %.0f -> [%d][%d]\n", player[i].name, player[i].life, player[i].rowp, player[i].columnP);
+		}
+		
+		for(i = 0; i < playerCount; i++){
+			if(player[i].life <= 0){
+				for(j = i; j < playerCount - 1; j++){
+					player[j] = player[j+1];
+				}
+				playerCount--;
+			}
+		}
+		
+		
 	}
 	
-	for(i = 0; i < playerCount; i++){
-		printf("%s: %.0f -> [%d][%d]\n", player[i].name, player[i].life, player[i].rowp, player[i].columnP);
-	}
+	printf("%s wins!!!", player[0].name);
 
-
-return 0;
+	return 0;
 
 }
 
