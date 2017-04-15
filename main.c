@@ -82,7 +82,7 @@ int main(){
 		
 	}
 	
-	printf("%s wins!!!", player[0].name);
+	printf("\n%s wins!!!", player[0].name);
 
 	return 0;
 
