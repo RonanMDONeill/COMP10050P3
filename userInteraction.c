@@ -46,4 +46,3 @@ void getDesiredElement(int boardSize, int * row, int * col){
 				printf("Error: Incorrect column dimension\n");
 		} while(*col < 0 && *col >= boardSize);
 }
-
