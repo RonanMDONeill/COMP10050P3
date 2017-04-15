@@ -43,7 +43,7 @@ struct players_{
     	int columnP;
 		enum slotType slotType;
 		int userNum;
-		
+
     }player[7];
 
 
@@ -76,5 +76,4 @@ void findSlots(int boardSize, int reqDist, int currDist,  struct slot * currSlot
 
 int slotAssign(int boardSize); // boardCreation.c
 #endif
-
 
