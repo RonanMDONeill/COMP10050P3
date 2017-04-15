@@ -6,15 +6,22 @@
  */
 
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 #include "crossfireOperations.h"
+#include <unistd.h>
+#include <time.h>
 
 int main(){
 	setvbuf(stdout,NULL,_IONBF,0);
+	
 	int row,column,boardSize;
+	int i, j;
+	int playerCount;
 
-	makePlayer();
+	makePlayer(&playerCount);
 
-		struct slot *upLeft;
+	struct slot *upLeft;
 	struct slot *upRight;
 	struct slot *downLeft;
 	struct slot *downRight;
@@ -47,10 +54,20 @@ int main(){
 		player[i].slotType = gameBoard[player[i].rowp][player[i].columnP].slotType;
 	}
 	
+	
+	
+	
 	for(i=0;i<playerCount;i++){
 		printf("%s (%d, %.2f) is on slot [%d][%d] %d\n", player[i].name, player[i].class,player[i].life,player[i].rowp,player[i].columnP, player[i].slotType);
 	}
 
+	for(i = 0; i < playerCount; i++){
+		moveORattack(player[i].userNum, playerCount, player, boardSize, upLeft, upRight, downLeft, downRight, gameBoard);
+	}
+	
+	for(i = 0; i < playerCount; i++){
+		printf("%s: %.0f -> [%d][%d]\n", player[i].name, player[i].life, player[i].rowp, player[i].columnP);
+	}
 
 
 return 0;
